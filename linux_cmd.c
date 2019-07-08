@@ -93,6 +93,13 @@ egrep  "字符串1|字符串2|字符串3|"  文件名
 ip link set eth5_0 down
 ip link set eth5_0 name eno_sc_798
 ip link set eno_sc_798 up
+
+ifconfig eth0 down
+/*保留前3段 vendor*/
+ifconfig eth0 hw ether xx:xx:xx:xx:xx:xx
+ifconfig eth0 up
+
+:MACADDR=xx:xx:xx:xx:xx:xx
 #endif
 
 #if lspci ethtool
