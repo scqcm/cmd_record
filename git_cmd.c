@@ -79,6 +79,7 @@ sed -i 's/ *$//g' *.h *.c *.sh
 git add src/lw_ipset_hashidx.*
 git status
 git commit -a
+git commit --amend
 git push origin FEA_v2.1_12721_ipsetHash
 git pull
 
@@ -88,8 +89,6 @@ git pull
   remotes/origin/HEAD -> origin/master
   remotes/origin/master
   ...
-  remotes/origin/stable/1804
-  remotes/origin/stable/1807
   remotes/origin/stable/1810
   remotes/origin/stable/test
   
