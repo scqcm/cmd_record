@@ -9,7 +9,11 @@ git config --global color.ui true
 origin	https://gerrit.fd.io/r/vpp (fetch)
 origin	https://gerrit.fd.io/r/vpp (push)
 
+git remote show origin
+
 git config -l
+[root@localhost cmd_record]# git branch -vv
+* master 2b63991 [origin/master: ahead 1] move coding_style.c.
 
 1.配置秘钥
 ssh-keygen -t rsa -C “注释” ，密码为空。生成两个文件：id_rsa和id_rsa.pub
@@ -91,7 +95,8 @@ git pull
   ...
   remotes/origin/stable/1810
   remotes/origin/stable/test
-  
+
+git checkout -b temp --track origin/xxx
 [root@localhost vpp]# git checkout stable/1807 //git checkout -b stable/1807 origin/stable/1807
 Branch stable/1807 set up to track remote branch stable/1807 from origin.
 Switched to a new branch 'stable/1807'

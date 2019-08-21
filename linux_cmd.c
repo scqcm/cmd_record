@@ -140,3 +140,10 @@ info sharedlibrary
 show sheduler-locking
 
 #end
+
+taskset -a -p <vpe-pid>
+pid 16251's current affinity mask: 2        # main thread
+pid 16288's current affinity mask: ffffff   # DPDK interrupt thread (not bound to a core)
+pid 16289's current affinity mask: 4        # stats thread
+pid 16290's current affinity mask: 8        # worker thread 0
+pid 16291's current affinity mask: 10       # worker thread 1
