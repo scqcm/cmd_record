@@ -46,14 +46,14 @@ git config --global user.name sunchao
 git blame [file]
 
 显示某个文件的每个版本提交信息：提交日期，提交人员，版本号，提交备注（没有修改细节）
-git whatchanged [file] 
+git whatchanged [file]
 
 显示某个版本的修改详情
-git show 6edc4bdcc1c966dc07cb5649f3be6a125ff01d4a 
-git log -p 6edc4bdcc1c966dc07cb5649f3be6a125ff01d4a 
+git show 6edc4bdcc1c966dc07cb5649f3be6a125ff01d4a
+git log -p 6edc4bdcc1c966dc07cb5649f3be6a125ff01d4a
 
 显示所有提交记录，每条记录只显示一行
-git log --pretty=oneline  
+git log --pretty=oneline
 
 显示与某个文件有关的所有提交记录
 git log --pretty=oneline  charge.lua
@@ -63,12 +63,12 @@ git show 6edc4bdcc1c966dc07cb5649f3be6a125ff01d4a [file]
 
 回退单个文件
 git reset  fcd2093 a.jsp
-#endif 
+#endif
 
 #if git 冲突
 git rebase master
     git status
-    vim lw_ipset_config.c 
+    vim lw_ipset_config.c
     git add lw_ipset_config.c
     git status
 git rebase --continue
@@ -77,7 +77,7 @@ git rebase --continue
 git clone git@118.190.200.88:LightWAN/ipset.git
 git clone git@git.appexnetworks.com:LightWAN/ipset.git
 git checkout FEA_v2.1_12721_ipsetHash
-yum install dos2unix.x86_64 
+yum install dos2unix.x86_64
 dos2unix *.c *.h *.sh
 sed -i 's/ *$//g' *.h *.c *.sh
 git add src/lw_ipset_hashidx.*
@@ -120,7 +120,7 @@ git diff ffd98b:filename b8e7b0:filename 查看某两个版本的某个文件之
 
 git diff FEA_v2.1_12721_ipsetHash master ./lw_ipset_ops.h > hns.patch
 [root@localhost src]# git diff FEA_v2.1_12721_ipsetHash master ./lw_ipset_ops.h > hns.patch
-[root@localhost src]# cat hns.patch 
+[root@localhost src]# cat hns.patch
 diff --git a/src/lw_ipset_ops.h b/src/lw_ipset_ops.h
 index 3ab0671..aee4203 100755
 --- a/src/lw_ipset_ops.h
