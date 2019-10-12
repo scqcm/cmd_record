@@ -21,7 +21,38 @@
     #source /etc/profile
 #endif
 
+#if find
+	find /etc/ -name passwd      ##查找/etc/下名称中带有passwd的文件
+	find /etc -maxdepth 1 -name passwd     ##查找/etc/下名称中带有passwd的文件，查找一层。
+	find /etc -name *.conf       ##查找/etc/下名称中带有*.conf的文件(下面显示的是部分)
+	find /etc -maxdepth 2 -name *.conf  ##查找/etc/下名称中带有*.conf的文件，且查找两层，包括一层（下面显示的是部分）
+	find /etc -maxdepth 2 -mindepth 2 -name *.conf  ##查找/etc/下名称中带有*.conf的文件，且只查找第二层
+	find /mnt -group tony             ##查找/mnt中所有组是tony用户的文件
+	find /mnt -user student -group student  ##查找/mnt中所有人和所有组都是student的文件
+	find /mnt -not -user student      ##查找/mnt中所有人不是student用户的文件
+	find /mnt -not -user student -o -group tony   ##查找/mnt中所有人不是student用户或者所有组是tony用户的文件
+	find /mnt -size 20K       ##查找/mnt文件大小近似20k的文件
+	find /mnt -size +20K      ##查找/mnt文件大小大于20k的文件
+	find /mnt -size -20K      ##查找/mnt文件大小小于20k的文件
+	find /mnt -type d         ##按type查找/mnt中目录
+	find /mnt -type f         ##按type查找/mnt中文件
+	find /mnt -cmin 10        ##查找/mnt中十分钟左右修改的
+	find /mnt -cmin +10       ##查找/mnt中十分钟以上修改的
+	find /mnt -cmin -10       ##查找/mnt中十分钟以内修改的
+	find /mnt -ctime 10       ##查找/mnt中十天左右修改的
+	find /mnt -ctime +10      ##查找/mnt中十天以上修改的
+	find /mnt -ctime -10      ##查找/mnt中十天以内修改的
+	find /mnt/ -perm 444      ##查找/mnt文件权限为444的文件
+	find /mnt/ -perm -444     ##查找/mnt中user有读的权限且group有读的权限且other有读的权限的文件。（三个条件，u.g.o至少要读的权限即r--r--r--）
+	find /mnt/ -perm -004     ##查找/mnt中other有读权限的文件（一个条件,o至少有读的权限）
+	find /mnt/ -perm -644     ##查找/mnt中user有读写的权限且group至少有读权限且other有读的权限的文件。（四个条件,rw-r--r--）
+	find /etc/ -name *.conf -exec cp -rp {} /mnt \;   ##把/etc/目录下名称中带有.conf的文件递归复制到/mnt下
+	find /mnt -name "*.conf" -exec rm -fr {} \; ##删除/mnt名称中带有.conf的文件
+	find / -group mail -exec cp -rp {} /mnt \; ##把/目录下的组属于mail的文件复制到/mnt
+#endif
+
 #if last
+    /var/log/wtmp
     [root@localhost cmd_record]# last
     root     pts/6        192.168.235.1    Mon Aug 12 10:37   still logged in
     root     pts/1        192.168.235.1    Fri Aug  9 13:46 - 10:03 (2+20:17)
@@ -44,7 +75,7 @@
     [root@localhost cmd_record]# setenforce 0
     修改2：
     vim /etc/sysconfig/selinux
-    将SELINUX=enforcing改为SELINUX=disabled
+    将 SELINUX=enforcing 改为 SELINUX=disabled
 #endif
 
 #if smb_cmd
@@ -53,6 +84,9 @@
     Changing password for user sc.
     [root@bogon veda]# pdbedit -L
     sc:1001:
+    [root@bogon veda]# smbpasswd  -a sc
+    New SMB password:
+    Retype new SMB password:
     [root@bogon veda]# smbpasswd -a sc_test
     New SMB password:
     Retype new SMB password:
@@ -64,9 +98,6 @@
     Deleted user sc_test.
     [root@bogon veda]# pdbedit -L
     sc:1001:
-    [root@bogon veda]# smbpasswd  -a sc
-    New SMB password:
-    Retype new SMB password:
 #end
 
 #if iptables
@@ -102,6 +133,8 @@
 #end
 
 #if od
+	od -tx1 -Ax foo2.o
+	
      -t, --format=TYPE	select output format or formats
     [root@bogon home]# echo "a" | od -tx1
     0000000 61 0a
@@ -139,6 +172,7 @@
     grep ^root /etc/passwd
     grep bash$ /etc/passwd
     grep ^$ /etc/shadow
+    grep -rn "netlink.*\.h"
 #endif
 
 #if ip
@@ -209,5 +243,16 @@ pid 16291's current affinity mask: 10       # worker thread 1
 [root@localhost cmd_record]# whereis ifconfig
 ifconfig: /usr/sbin/ifconfig /usr/share/man/man8/ifconfig.8.gz
 
+mount -o remount,size=777M tmpfs /dev/shm
+parted -l
+df -h
+fdisk -l
+cfdisk
+
+rpm -e --nodeps java-1.6.0-openjdk-1.6.0.0-1.66.1.13.0.el6.i686
+gcc -v main.c
+ls -al *b.so
+arp -a
+ip neigh
 ctrl+s 终止屏幕输出（即停止回显），你敲的依然有效，只是看不见，作用嘛，你登录系统输入密码时，是不是看不见你敲的东东
 ctrl+q 恢复屏幕输出，你刚才敲的都显示出来了

@@ -49,17 +49,14 @@ git blame [file]
 git whatchanged [file]
 
 显示某个版本的修改详情
-git show 6edc4bdcc1c966dc07cb5649f3be6a125ff01d4a
-git log -p 6edc4bdcc1c966dc07cb5649f3be6a125ff01d4a
+git show 6edc4bdc
+git log -p 6edc4bdc
+git log --name-only 893db346
+git log --name-status 893db346
+git show 6edc4bdc [file]
 
 显示所有提交记录，每条记录只显示一行
-git log --pretty=oneline
-
-显示与某个文件有关的所有提交记录
-git log --pretty=oneline  charge.lua
-
-显示某个版本的某个文件修改情况
-git show 6edc4bdcc1c966dc07cb5649f3be6a125ff01d4a [file]
+git log --pretty=oneline [file]
 
 回退单个文件
 git reset  fcd2093 a.jsp
@@ -72,7 +69,13 @@ git rebase master
     git add lw_ipset_config.c
     git status
 git rebase --continue
+
+git diff 3eaf0ee8 66709934 >sc.patch
+patch -p1 < ../sc.patch
 #endif
+
+git pull = git fetch + git merge FETCH_HEAD
+git pull --rebase =  git fetch + git rebase FETCH_HEAD
 
 git clone git@118.190.200.88:LightWAN/ipset.git
 git clone git@git.appexnetworks.com:LightWAN/ipset.git
@@ -94,7 +97,6 @@ git pull
   remotes/origin/master
   ...
   remotes/origin/stable/1810
-  remotes/origin/stable/test
 
 git checkout -b temp --track origin/xxx
 [root@localhost vpp]# git checkout stable/1807 //git checkout -b stable/1807 origin/stable/1807
