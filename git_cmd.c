@@ -54,6 +54,7 @@ git log -p 6edc4bdc
 git log --name-only 893db346
 git log --name-status 893db346
 git show 6edc4bdc [file]
+git log --author="scqcm"
 
 显示所有提交记录，每条记录只显示一行
 git log --pretty=oneline [file]
@@ -104,13 +105,13 @@ Branch stable/1807 set up to track remote branch stable/1807 from origin.
 Switched to a new branch 'stable/1807'
 
 /*删除分支*/
-git branch -D FEA_v2.1_12721_ipsetHash_temp20190104_LW_IPSetDumpDiff_3003
+git branch -D FEA_v2.1_12721_ipsetHash_3003
 /*删除远程分支*/
-git push origin --delete FEA_v2.1_12721_ipsetHash_temp...
+git push origin --delete FEA_v2.1_12721_ipsetHash_3003
 /*新建分支*/
-git checkout -b FEA_v2.1_12721_ipsetHash_temp20190104_LW_IPSetDumpDiff_3003
+git checkout -b FEA_v2.1_12721_ipsetHash_3003
 /*同步到远端*/
-git push origin FEA_v2.1_12721_ipsetHash_temp20190104_LW_IPSetDumpDiff_3003
+git push origin FEA_v2.1_12721_ipsetHash_3003
 
 git diff --staged test.c
 git diff --cached test.c
