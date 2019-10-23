@@ -61,6 +61,14 @@ git log --pretty=oneline [file]
 
 回退单个文件
 git reset  fcd2093 a.jsp
+
+查看某个文件的详细变更历史：
+git log --pretty=oneline [file] > cmd.sh
+sed -i 's/ .*$/ [file]/g' cmd.sh
+sed -i 's/^/git show /g' cmd.sh
+chmod +x cmd.sh
+./cmd.sh
+
 #endif
 
 #if git 冲突
@@ -78,6 +86,7 @@ patch -p1 < ../sc.patch
 git pull = git fetch + git merge FETCH_HEAD
 git pull --rebase =  git fetch + git rebase FETCH_HEAD
 
+git clone https://user:code@github.com/scqcm/cmd_record.git ./target_dir
 git clone git@118.190.200.88:LightWAN/ipset.git
 git clone git@git.appexnetworks.com:LightWAN/ipset.git
 git checkout FEA_v2.1_12721_ipsetHash
