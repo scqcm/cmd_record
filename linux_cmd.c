@@ -249,6 +249,7 @@ df -h
 fdisk -l
 cfdisk
 
+sed 's/要被取代的字串/新的字串/g'
 rpm -e --nodeps java-1.6.0-openjdk-1.6.0.0-1.66.1.13.0.el6.i686
 gcc -v main.c
 ls -al *b.so

@@ -15,6 +15,13 @@ git config -l
 [root@localhost cmd_record]# git branch -vv
 * master 2b63991 [origin/master: ahead 1] move coding_style.c.
 
+Push an existing Git repository:
+cd existing_repo
+git remote rename origin old-origin
+git remote add origin git@gitlab.verify.com:hongmengOS/hm-verify-kernel.git
+git push -u origin --all
+git push -u origin --tags
+
 1.配置秘钥
 ssh-keygen -t rsa -C “注释” ，密码为空。生成两个文件：id_rsa和id_rsa.pub
 在github上添加“id_rsa.pub”公钥。测试：
@@ -24,6 +31,7 @@ Welcome to GitLab, @sunchao!
 Connection to 192.168.2.201 closed.
 
 2.查看用户名和邮箱地址
+git config --list
 git config user.name
 git config user.email
 
@@ -55,6 +63,7 @@ git log --name-only 893db346
 git log --name-status 893db346
 git show 6edc4bdc [file]
 git log --author="scqcm"
+git show 6edc4bdc --stat
 
 显示所有提交记录，每条记录只显示一行
 git log --pretty=oneline [file]
@@ -108,6 +117,7 @@ git pull
   ...
   remotes/origin/stable/1810
 
+git checkout -b mybranch origin/mybranch
 git checkout -b temp --track origin/xxx
 [root@localhost vpp]# git checkout stable/1807 //git checkout -b stable/1807 origin/stable/1807
 Branch stable/1807 set up to track remote branch stable/1807 from origin.
