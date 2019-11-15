@@ -3,6 +3,23 @@
 yum install git
 git init
 git config --global color.ui true
+git check-ignore -v App.class
+git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+
+[root@localhost cmd_record]# cat .git/config 
+[core]
+	repositoryformatversion = 0
+	filemode = false
+	bare = false
+	logallrefupdates = true
+	symlinks = false
+	ignorecase = true
+[remote "origin"]
+	url = git@github.com:scqcm/cmd_record.git
+	fetch = +refs/heads/*:refs/remotes/origin/*   */
+[branch "master"]
+	remote = origin
+	merge = refs/heads/master
 
 查看信息：
 [root@localhost vpp]# git remote -v
@@ -54,6 +71,7 @@ git config --global user.name sunchao
 git blame [file]
 
 显示某个文件的每个版本提交信息：提交日期，提交人员，版本号，提交备注（没有修改细节）
+<<<<<<< HEAD
 git whatchanged [file]
 
 显示某个版本的修改详情
@@ -67,6 +85,12 @@ git show 6edc4bdc --stat
 
 显示所有提交记录，每条记录只显示一行
 git log --pretty=oneline [file]
+
+显示与某个文件有关的所有提交记录
+git log --pretty=oneline  charge.lua
+
+显示某个版本的某个文件修改情况
+git show 6edc4bdc [file]
 
 回退单个文件
 git reset  fcd2093 a.jsp
@@ -100,12 +124,38 @@ git clone git@118.190.200.88:LightWAN/ipset.git
 git clone git@git.appexnetworks.com:LightWAN/ipset.git
 git checkout FEA_v2.1_12721_ipsetHash
 yum install dos2unix.x86_64
+
+#if git remote
+我们先删除已关联的名为origin的远程库：
+git remote rm origin
+
+然后，先关联GitHub的远程库：
+git remote add github git@github.com:michaelliao/learngit.git
+
+接着，再关联码云的远程库：
+git remote add gitee git@gitee.com:liaoxuefeng/learngit.git
+
+git remote -v
+gitee	git@gitee.com:liaoxuefeng/learngit.git (fetch)
+gitee	git@gitee.com:liaoxuefeng/learngit.git (push)
+github	git@github.com:michaelliao/learngit.git (fetch)
+github	git@github.com:michaelliao/learngit.git (push)
+
+git push github master
+git push gitee master
+#endif
+
+git clone git@118.190.200.88:LightWAN/ipset.git
+git clone git@git.appexnetworks.com:LightWAN/ipset.git
+git checkout FEA_v2.1_12721_ipsetHash
+yum install dos2unix.x86_64 
 dos2unix *.c *.h *.sh
 sed -i 's/ *$//g' *.h *.c *.sh
 git add src/lw_ipset_hashidx.*
 git status
 git commit -a
 git commit --amend
+
 git push origin FEA_v2.1_12721_ipsetHash
 git pull
 
@@ -119,6 +169,7 @@ git pull
 
 git checkout -b mybranch origin/mybranch
 git checkout -b temp --track origin/xxx
+
 [root@localhost vpp]# git checkout stable/1807 //git checkout -b stable/1807 origin/stable/1807
 Branch stable/1807 set up to track remote branch stable/1807 from origin.
 Switched to a new branch 'stable/1807'
@@ -143,6 +194,7 @@ git diff ffd98b:filename b8e7b0:filename 查看某两个版本的某个文件之
 git diff FEA_v2.1_12721_ipsetHash master ./lw_ipset_ops.h > hns.patch
 [root@localhost src]# git diff FEA_v2.1_12721_ipsetHash master ./lw_ipset_ops.h > hns.patch
 [root@localhost src]# cat hns.patch
+
 diff --git a/src/lw_ipset_ops.h b/src/lw_ipset_ops.h
 index 3ab0671..aee4203 100755
 --- a/src/lw_ipset_ops.h
